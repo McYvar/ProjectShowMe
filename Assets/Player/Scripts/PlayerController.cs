@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
 public class PlayerController : MonoBehaviour
 {
+    public bool hasSpawned;
+
     [SerializeField] private float movementBuildupStrenght;
     [SerializeField] private float maxMovementVelocityThreshold;
     [SerializeField] private float movementCounterStrength;
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        hasSpawned = false;
         rb.useGravity = false;
         myGravityDirection = myGravityDirection.normalized;
     }
@@ -140,6 +143,11 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(-myGravityDirection * jumpStrenght, ForceMode.VelocityChange);
         }
+    }
+
+    public void PickUp(InputAction.CallbackContext context)
+    {
+        //if (context.started)
     }
     #endregion
 }
