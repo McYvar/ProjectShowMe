@@ -7,8 +7,9 @@ public class SO_ActionChangeGlobalGravityDirection : SO_InteractableBase
 {
     [SerializeField] private Vector3 gravityDirection;
 
-    public override void Execute()
+    public override bool EnterAction()
     {
         Physics.gravity = gravityDirection;
+        return true;
     }
 }

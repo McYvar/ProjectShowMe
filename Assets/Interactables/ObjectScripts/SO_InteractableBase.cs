@@ -4,7 +4,8 @@ using UnityEngine;
 
 public abstract class SO_InteractableBase : ScriptableObject
 {
-    public virtual void Execute() { }
-    public virtual void Execute<T>(T obj) where T : Object { }
-
+    public virtual bool EnterAction() { return true; }
+    public virtual bool EnterAction<T>(T obj) where T : Object { return true; }
+    public virtual bool ExitAction() { return true; }
+    public virtual bool ExitAction<T>(T obj) where T: Object { return true; }
 }

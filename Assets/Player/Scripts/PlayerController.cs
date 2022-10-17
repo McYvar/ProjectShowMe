@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 movementInput;
 
+    [SerializeField] private Transform centreOfMass;
+
     private void Awake()
     {
         FindObjectOfType<CameraController>().ConnectPlayerToInstances(transform);
@@ -77,6 +79,8 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = movementInput * movementBuildupStrenght * inAirMovementReduction;
         rb.AddForce(movement, ForceMode.VelocityChange);
 
+        centreOfMass.rotation = Quaternion.LookRotation(movementInput);
+
         // counter velocity if too fast
         Vector3 horizontalMovement = relativeToGravityHorizontalDirectionVector(Vector3.zero, -rb.velocity, myGravityDirection);
         if (horizontalMovement.magnitude > maxMovementVelocityThreshold)
@@ -84,8 +88,6 @@ public class PlayerController : MonoBehaviour
             horizontalMovement *= movementCounterStrength * inAirMovementReduction;
             rb.AddForce(horizontalMovement);
         }
-        //Debug.DrawLine(transform.position, transform.position + relativeToGravityHorizontalDirectionVector(Vector3.zero, -rb.velocity, myGravityDirection));
-        //Debug.DrawLine(transform.position, transform.position + movementInput);
     }
 
     private Vector3 relativeToGravityHorizontalDirectionVector(Vector3 mainPosition, Vector3 positionTowards, Vector3 gravity)

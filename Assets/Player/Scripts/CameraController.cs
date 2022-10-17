@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Transform mainCamera;
     [SerializeField, Range(0.0f, 10.0f)] float cameraOffsetDistance;
     [SerializeField, Range(1.0f, 10.0f)] float distanceOffsetReduction;
-    [SerializeField, Range(0.01f, 10.0f)] float cameraLerpSpeed;
+    [SerializeField, Range(0.01f, 1.0f)] float cameraLerpSpeed;
 
     private void Start()
     {
@@ -35,7 +35,7 @@ public class CameraController : MonoBehaviour
                 nextPostion += (players[i].position - nextPostion) / 2;
             }
         }
-        transform.position = Vector3.Lerp(transform.position, nextPostion, cameraLerpSpeed * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, nextPostion, cameraLerpSpeed);
 
         mainCamera.localPosition = Vector3.Lerp(mainCamera.localPosition,
             -mainCamera.transform.forward * Vector3.Distance(players[0].position, players[1].position) / distanceOffsetReduction - mainCamera.transform.forward * cameraOffsetDistance,
