@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newRelativeLocation: {x: 0, y: -3.95, z: 0}
   lerpSpeed: 0.296
-  moveBackWhenNotActive: 0
+  moveBackWhenNotActive: 1
